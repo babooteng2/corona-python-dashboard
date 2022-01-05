@@ -15,6 +15,7 @@ https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data
 pip install pandas
 pip install dash
 pip install jupyterlab
+pip install jupyterthemes
 ```
 
 ```node
@@ -24,4 +25,7 @@ select open with CSV viewer
 or
 open file and ctrl + shift + p
 select or type CSV:Open Preview
+
+// jupyter theme change
+ jt -t monokai
 ```

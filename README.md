@@ -16,3 +16,9 @@ pip install pandas
 pip install dash
 pip install jupyterlab
 ```
+
+```node
+Extension: Excel viewer
+right click -> open with
+select open with CSV viewer
+```

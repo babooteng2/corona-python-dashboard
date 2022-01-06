@@ -16,6 +16,9 @@ pip install pandas
 pip install dash
 pip install jupyterlab
 pip install jupyterthemes
+
+pip install black
+pip install pylint
 ```
 
 ```node
@@ -29,3 +32,24 @@ select or type CSV:Open Preview
 // jupyter theme change
  jt -t monokai
 ```
+
+### check linting and formatting when you use Python
+
+```node
+// in vscode -> ctrl + shift + p -> open workspace setting
+{
+  "python.pythonPath": "",
+  "python.formatting.provider": "black",
+  "python.formatting.blackArgs": ["--line-length", "80"],
+  "editor.formatOnSave": true,
+  "python.linting.pylintEnabled": true,
+  "python.linting.enabled": true,
+  "python.linting.lintOnSave": true,
+  "python.linting.pylintArgs": ["--load-plugins", "pylint-flask"],
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.python"
+  }
+}
+```
+
+default formatter prettier가 되어있는 설정을 python사용 시에는 python formatter 이용 선언

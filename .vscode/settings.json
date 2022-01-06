@@ -1,0 +1,13 @@
+{
+  "python.pythonPath": "",
+  "python.formatting.provider": "black",
+  "python.formatting.blackArgs": ["--line-length", "80"],
+  "editor.formatOnSave": true,
+  "python.linting.pylintEnabled": true,
+  "python.linting.enabled": true,
+  "python.linting.lintOnSave": true,
+  "python.linting.pylintArgs": ["--load-plugins", "pylint-flask"],
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.python"
+  }
+}

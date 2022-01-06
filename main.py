@@ -27,3 +27,21 @@ for condition in conditions:
         final_df = condition_df
     else:
         final_df = final_df.merge(condition_df)
+
+def make_country_df(condition, country):
+    df = pd.read_csv(f"data/time_{condition}.csv")
+    df = df.loc[df["Country/Region"] == country]
+    df = df.drop(columns = ["Province/State","Country/Region","Lat", "Long"]).sum().reset_index(name=condition)
+    df = df.rename(columns= {'index': "date"})
+    return df
+
+final_df = None
+
+for condition in conditions:
+    condition_df = make_country_df(condition, "Korea, South")
+    if final_df is None:
+        final_df = condition_df
+    else:
+        final_df = final_df.merge(condition_df)
+
+final_df

@@ -3,8 +3,7 @@ from dash import dcc
 from dash import html
 import plotly.express as px
 from data import countries_df
-
-print(countries_df.values)
+from builders import make_table
 
 stylesheets = [
     "https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css",
@@ -22,46 +21,14 @@ app.layout = html.Div(
     },
     children=[
         html.Header(
-            style={"textAlign": "center", "paddingTop": "50px"},
+            style={
+                "textAlign": "center",
+                "paddingTop": "50px",
+                "marginBottom": 100,
+            },
             children=[html.H1("Corona Dashboard", style={"fontSize": 50})],
         ),
-        html.Div(
-            children=[
-                html.Div(
-                    children=[
-                        html.Table(
-                            children=[
-                                html.Thead(
-                                    children=[
-                                        html.Tr(
-                                            children=[
-                                                html.Th(
-                                                    column_name.replace(
-                                                        "_", " "
-                                                    )
-                                                )
-                                                for column_name in countries_df.columns
-                                            ]
-                                        )
-                                    ]
-                                ),
-                                html.Tbody(
-                                    children=[
-                                        html.Tr(
-                                            children=[
-                                                html.Td(value_column)
-                                                for value_column in value
-                                            ]
-                                        )
-                                        for value in countries_df.values
-                                    ]
-                                ),
-                            ]
-                        )
-                    ]
-                )
-            ]
-        ),
+        html.Div(children=[html.Div(children=[make_table(countries_df)])]),
     ],
 )
 

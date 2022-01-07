@@ -36,7 +36,7 @@ select or type CSV:Open Preview
 ### check linting and formatting when you use Python
 
 ```node
-// in vscode -> ctrl + shift + p -> open workspace setting
+// in vscode -> ctrl + shift + p -> open workspace setting(JSON)
 {
   "python.pythonPath": "",
   "python.formatting.provider": "black",
@@ -53,3 +53,9 @@ select or type CSV:Open Preview
 ```
 
 default formatter prettier가 되어있는 설정을 python사용 시에는 python formatter 이용 선언
+
+# eg
+
+```html
+https://dash.plotly.com/layout
+```

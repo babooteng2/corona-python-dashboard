@@ -1,5 +1,5 @@
 {
-  "python.pythonPath": "",
+  "python.defaultInterpreterPath": "",
   "python.formatting.provider": "black",
   "python.formatting.blackArgs": ["--line-length", "80"],
   "editor.formatOnSave": true,

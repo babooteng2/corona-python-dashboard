@@ -62,4 +62,5 @@ https://plotly.com/python-api-reference/generated/plotly.express.scatter_geo.htm
 https://plotly.com/python/plotly-express/
 https://plotly.com/python/builtin-colorscales/#using-builtin-continuous-color-scales
 https://plotly.com/python/reference/layout/xaxis/
+https://dash.plotly.com/dash-core-components/input
 ```

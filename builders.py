@@ -30,7 +30,7 @@ def make_table(df):
                         style={
                             "display": "grid",
                             "gridTemplateColumns": "repeat(4, 1fr)",
-                            "border-top": "1px solid white",
+                            "borderTop": "1px solid white",
                             "padding": "30px 0px",
                             "textAlign": "right",
                         },

@@ -17,7 +17,6 @@ countries_df = (
     .reset_index()
 )
 
-
 conditions = ["confirmed", "deaths", "recovered"]
 
 

@@ -2,7 +2,7 @@ import dash
 from dash import dcc
 from dash import html
 import plotly.express as px
-from data import countries_df
+from data import countries_df, totals_df
 from builders import make_table
 
 stylesheets = [
@@ -14,6 +14,7 @@ app = dash.Dash(__name__, external_stylesheets=stylesheets)
 
 bubble_map = px.scatter_geo(
     countries_df,
+    title="Confirmed By Country",
     size="Confirmed",
     size_max=40,
     hover_name="Country_Region",
@@ -22,12 +23,26 @@ bubble_map = px.scatter_geo(
     locationmode="country names",
     projection="natural earth",
     template="plotly_dark",
+    color_continuous_scale=px.colors.sequential.Oryel,
     hover_data={
-        "Confirmed": ":,.2f",
-        "Deaths": ":,.2f",
-        "Recovered": ":,.2f",
+        "Confirmed": ":,",
+        "Deaths": ":,",
+        "Recovered": ":,",
         "Country_Region": False,
     },
+)
+bubble_map.update_layout(margin=dict(l=0, r=0, t=50, b=0))
+
+bars_graph = px.bar(
+    totals_df,
+    x="condition",
+    y="count",
+    template="plotly_dark",
+    title="Total Global Cases",
+    hover_data={"condition": False, "count": ":,"},
+)
+bars_graph.update_layout(
+    xaxis=dict(title="Condition"), yaxis=dict(title="Count")
 )
 
 app.layout = html.Div(
@@ -50,6 +65,11 @@ app.layout = html.Div(
             children=[
                 html.Div(children=[dcc.Graph(figure=bubble_map)]),
                 html.Div(children=[make_table(countries_df)]),
+            ]
+        ),
+        html.Div(
+            children=[
+                html.Div(children=[dcc.Graph(figure=bars_graph)]),
             ]
         ),
     ],

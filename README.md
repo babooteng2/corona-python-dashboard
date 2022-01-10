@@ -54,10 +54,12 @@ select or type CSV:Open Preview
 
 default formatter prettier가 되어있는 설정을 python사용 시에는 python formatter 이용 선언
 
-# eg
+# ref.
 
 ```html
 https://dash.plotly.com/layout
 https://plotly.com/python-api-reference/generated/plotly.express.scatter_geo.html
 https://plotly.com/python/plotly-express/
+https://plotly.com/python/builtin-colorscales/#using-builtin-continuous-color-scales
+https://plotly.com/python/reference/layout/xaxis/
 ```

@@ -40,10 +40,10 @@ bars_graph = px.bar(
     template="plotly_dark",
     title="Total Global Cases",
     hover_data={"condition": False, "count": ":,"},
+    labels={"condition": "Condition", "count": "Count", "color": "Condition"},
 )
-bars_graph.update_layout(
-    xaxis=dict(title="Condition"), yaxis=dict(title="Count")
-)
+
+bars_graph.update_traces(marker_color=["#e74c3c", "#8e44ad", "#27ae60"])
 
 app.layout = html.Div(
     style={
@@ -62,21 +62,33 @@ app.layout = html.Div(
             children=[html.H1("Corona Dashboard", style={"fontSize": 50})],
         ),
         html.Div(
+            style={
+                "display": "grid",
+                "gap": 50,
+                "gridTemplateColumns": "repeat(4, 1fr)",
+            },
             children=[
-                html.Div(children=[dcc.Graph(figure=bubble_map)]),
+                html.Div(
+                    style={"grid-column": "span 3"},
+                    children=[dcc.Graph(figure=bubble_map)],
+                ),
                 html.Div(children=[make_table(countries_df)]),
-            ]
+            ],
         ),
         html.Div(
             children=[
-                html.Div(children=[dcc.Graph(figure=bars_graph)]),
+                html.Div(
+                    style={
+                        "display": "grid",
+                        "gap": 50,
+                        "gridTemplateColumns": "repeat(4, 1fr)",
+                    },
+                    children=[dcc.Graph(figure=bars_graph)],
+                ),
             ]
         ),
     ],
 )
-
-map_figure = px.scatter_geo(countries_df)
-map_figure.show()
 
 if __name__ == "__main__":
     app.run_server(debug=True)

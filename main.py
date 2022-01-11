@@ -3,7 +3,7 @@ from dash import dcc
 from dash import html
 from dash.dependencies import Input, Output
 import plotly.express as px
-from data import countries_df, totals_df, dropdown_options
+from data import countries_df, totals_df, dropdown_options, make_global_df
 from builders import make_table
 
 stylesheets = [
@@ -87,6 +87,9 @@ app.layout = html.Div(
                     children=[
                         html.Div(dcc.Graph(figure=bars_graph)),
                         html.Div(
+                            style={
+                                "gridColumn": "span 3",
+                            },
                             children=[
                                 dcc.Dropdown(
                                     id="country",
@@ -95,11 +98,8 @@ app.layout = html.Div(
                                         for country in dropdown_options
                                     ],
                                 ),
-                                html.H2(
-                                    children="Hello anonymous",
-                                    id="country-output",
-                                ),
-                            ]
+                                dcc.Graph(id="country_graph"),
+                            ],
                         ),
                     ],
                 ),
@@ -109,12 +109,30 @@ app.layout = html.Div(
 )
 
 
-@app.callback(Output("country-output", "children"), [Input("country", "value")])
+@app.callback(Output("country_graph", "figure"), [Input("country", "value")])
 def update_hello(value):
-    if value is None:
-        return "Hello Anonymous"
-    else:
-        return f"Hello {value}"
+    fig = px.line(
+        make_global_df(),
+        x="date",
+        y=["confirmed", "deaths", "recovered"],
+        labels={
+            "value": "Cases",
+            "variable": "Conditions",
+        },
+        hover_data={
+            "value": ":,",
+            "variable": False,
+        },
+        color_discrete_map={
+            "confirmed": "#e74c3c",
+            "deaths": "#8e44ad",
+            "recovered": "#27ae60",
+        },
+    )
+    fig.update_xaxes(
+        rangeslider_visible=True,
+    )
+    return fig
 
 
 if __name__ == "__main__":

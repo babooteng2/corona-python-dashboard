@@ -91,15 +91,13 @@ app.layout = html.Div(
                                 dcc.Dropdown(
                                     id="country",
                                     options=[
-                                        {"label": "n", "value": "n"},
-                                        {"label": "b", "value": "b"},
-                                        {"label": "c", "value": "c"},
+                                        {"label": country, "value": country}
+                                        for country in dropdown_options
                                     ],
-                                    value="NYC",
                                 ),
                                 html.H2(
                                     children="Hello anonymous",
-                                    id="hello-output",
+                                    id="country-output",
                                 ),
                             ]
                         ),
@@ -111,7 +109,7 @@ app.layout = html.Div(
 )
 
 
-@app.callback(Output("hello-output", "children"), [Input("country", "value")])
+@app.callback(Output("country-output", "children"), [Input("country", "value")])
 def update_hello(value):
     if value is None:
         return "Hello Anonymous"

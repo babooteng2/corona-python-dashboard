@@ -17,6 +17,9 @@ countries_df = (
     .reset_index()
 )
 
+dropdown_options = countries_df.sort_values("Country_Region").reset_index()
+dropdown_options = dropdown_options["Country_Region"]
+
 conditions = ["confirmed", "deaths", "recovered"]
 
 

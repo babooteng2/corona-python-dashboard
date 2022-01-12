@@ -19,6 +19,9 @@ pip install jupyterthemes
 
 pip install black
 pip install pylint
+
+// for deploy
+pip install gunicorn
 ```
 
 ```node
@@ -75,4 +78,6 @@ curl https://cli-assets.heroku.com/install.sh | sh
 heroku login
 heroku git:remote -a [프로젝트명]
 git push heroku master
+
+https://devcenter.heroku.com/articles/procfile
 ```

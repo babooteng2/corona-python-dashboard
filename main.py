@@ -103,6 +103,12 @@ app.layout = html.Div(
                             },
                             children=[
                                 dcc.Dropdown(
+                                    style={
+                                        "width": 320,
+                                        "margin": "0 auto",
+                                        "color": "#111111",
+                                    },
+                                    placeholder="Select a Country",
                                     id="country",
                                     options=[
                                         {"label": country, "value": country}
@@ -130,6 +136,7 @@ def update_hello(value):
         df,
         x="date",
         y=["confirmed", "deaths", "recovered"],
+        template="plotly_dark",
         labels={
             "value": "Cases",
             "variable": "Conditions",

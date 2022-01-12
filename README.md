@@ -64,4 +64,6 @@ https://plotly.com/python/builtin-colorscales/#using-builtin-continuous-color-sc
 https://plotly.com/python/reference/layout/xaxis/
 https://dash.plotly.com/dash-core-components/input
 https://plotly.com/python/line-charts/ https://plotly.com/python/time-series/
+https://dash.plotly.com/react-for-python-developers
+https://dash.plotly.com/dash-core-components
 ```

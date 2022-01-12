@@ -9,7 +9,3 @@ table tbody {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
-
-#country.dash-dropdown {
-  color: black;
-}

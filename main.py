@@ -3,7 +3,13 @@ from dash import dcc
 from dash import html
 from dash.dependencies import Input, Output
 import plotly.express as px
-from data import countries_df, totals_df, dropdown_options, make_global_df
+from data import (
+    countries_df,
+    totals_df,
+    dropdown_options,
+    make_global_df,
+    make_country_df,
+)
 from builders import make_table
 
 stylesheets = [
@@ -32,7 +38,10 @@ bubble_map = px.scatter_geo(
         "Country_Region": False,
     },
 )
-bubble_map.update_layout(margin=dict(l=0, r=0, t=50, b=0))
+bubble_map.update_layout(
+    margin=dict(l=0, r=0, t=50, b=0),
+    coloraxis_colorbar=dict(xanchor="left", x=0),
+)
 
 bars_graph = px.bar(
     totals_df,
@@ -65,8 +74,9 @@ app.layout = html.Div(
         html.Div(
             style={
                 "display": "grid",
-                "gap": 50,
+                "gap": 40,
                 "gridTemplateColumns": "repeat(4, 1fr)",
+                "padding": 20,
             },
             children=[
                 html.Div(
@@ -81,8 +91,9 @@ app.layout = html.Div(
                 html.Div(
                     style={
                         "display": "grid",
-                        "gap": 50,
+                        "gap": 40,
                         "gridTemplateColumns": "repeat(4, 1fr)",
+                        "padding": 20,
                     },
                     children=[
                         html.Div(dcc.Graph(figure=bars_graph)),
@@ -111,8 +122,12 @@ app.layout = html.Div(
 
 @app.callback(Output("country_graph", "figure"), [Input("country", "value")])
 def update_hello(value):
+    if value is None:
+        df = make_global_df()
+    else:
+        df = make_country_df(value)
     fig = px.line(
-        make_global_df(),
+        df,
         x="date",
         y=["confirmed", "deaths", "recovered"],
         labels={

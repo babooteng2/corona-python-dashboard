@@ -67,3 +67,12 @@ https://plotly.com/python/line-charts/ https://plotly.com/python/time-series/
 https://dash.plotly.com/react-for-python-developers
 https://dash.plotly.com/dash-core-components
 ```
+
+### deploy on heroku
+
+```node
+curl https://cli-assets.heroku.com/install.sh | sh
+heroku login
+heroku git:remote -a [프로젝트명]
+git push heroku master
+```
